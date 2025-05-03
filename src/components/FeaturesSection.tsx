@@ -15,11 +15,13 @@ const poweredFeatures = [
     icon: <Layers className="h-5 w-5 text-brand-teal" />,
   },
   {
-    title: 'Shop My Size: body-measurement based search',
+    title: 'Shop My Size',
+    description: 'Body-measurement based search for perfect size recommendations',
     icon: <User className="h-5 w-5 text-brand-teal" />,
   },
   {
-    title: 'Shop My Fit: fit-based search',
+    title: 'Shop My Fit',
+    description: 'Fit-based search to match your preferred garment fit',
     icon: <Search className="h-5 w-5 text-brand-teal" />,
   },
   {
@@ -70,13 +72,16 @@ const FeaturesSection = () => {
           {poweredFeatures.map((feature, idx) => (
             <div
               key={idx}
-              className="flex items-start space-x-3 bg-white/10 p-5 rounded-lg"
+              className="flex items-start space-x-3"
             >
-              <div className="bg-white/20 p-2 rounded-md">
+              <div>
                 {feature.icon}
               </div>
               <div>
-                <h3 className="font-semibold text-lg">{feature.title}</h3>
+                <h3 className="font-semibold text-base text-brand-lightgray">{feature.title}</h3>
+                {feature.description && (
+                  <p className="text-sm text-brand-gray">{feature.description}</p>
+                )}
               </div>
             </div>
           ))}
