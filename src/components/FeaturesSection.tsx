@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Check, Ruler, Database, Layers, Eye, User, Search, Chart, Shield, Circle } from 'lucide-react';
+import { Check, Ruler, Database, Layers, Eye, User, Search, ChartBar, Shield, Circle } from 'lucide-react';
 
 const FeaturesSection = () => {
   const features = [
@@ -34,7 +34,7 @@ const FeaturesSection = () => {
     },
     {
       title: 'Product fit analytics',
-      icon: <Chart className="h-5 w-5 text-brand-teal" />,
+      icon: <ChartBar className="h-5 w-5 text-brand-teal" />,
     },
     {
       title: 'Impacts 100% of your customers',
