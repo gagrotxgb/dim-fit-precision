@@ -5,13 +5,13 @@ const HowItWorksSection = () => {
       <div className="container mx-auto">
         <h2 className="section-title text-center">1 Step Process to Provide 2 Benefits</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
           {/* Step 1 */}
           <div className="relative">
             <div className="absolute -top-4 -left-4 w-10 h-10 bg-brand-teal rounded-full flex items-center justify-center text-white font-bold z-10">
               1
             </div>
-            <div className="bg-brand-gray rounded-lg p-6 h-full border-2 border-brand-teal">
+            <div className="bg-brand-gray rounded-lg p-6 h-full border-2 border-brand-teal flex flex-col">
               <h3 className="text-xl font-bold text-brand-blue mb-3">Upload Product Images</h3>
               <p className="text-gray-700 mb-4">Upload images of your products clicked using our marker to our platform</p>
               <div className="mt-auto flex justify-center">
