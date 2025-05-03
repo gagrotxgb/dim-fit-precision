@@ -122,7 +122,7 @@ const ContactSection = () => {
           
           {/* Map and Contact Info */}
           <div className="flex flex-col justify-between">
-            <div className="bg-brand-gray rounded-lg h-64 md:h-80 w-full flex items-center justify-center">
+            <div className="bg-brand-gray rounded-lg h-64 md:h-60 w-full flex items-center justify-center">
               <p className="text-brand-blue text-lg">Contact information</p>
             </div>
             
