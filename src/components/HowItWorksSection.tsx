@@ -29,7 +29,7 @@ const HowItWorksSection = () => {
               <p className="text-gray-700">Choose specific points on garments to get any measurement of the apparel with precision. Our technology allows for complete customization of measurement points to meet your exact needs.</p>
             </div>
             
-            <div className="bg-brand-gray rounded-lg p-6 border border-brand-lightgray">
+            <div className="bg-brand-gray rounded-lg p-6 w-full border border-brand-lightgray">
               <h3 className="text-xl font-bold text-brand-blue mb-3">Benefit 2: Fit-accurate, Size-accurate Virtual Try-on</h3>
               <p className="text-gray-700">Our system provides accurate measurements with 0.1 inch precision, allowing customers to visualize exactly how garments will fit before purchasing, reducing returns and increasing satisfaction.</p>
             </div>
