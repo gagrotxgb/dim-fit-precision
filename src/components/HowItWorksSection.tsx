@@ -24,7 +24,7 @@ const HowItWorksSection = () => {
           
           {/* Benefits */}
           <div className="md:col-span-2 space-y-6">
-            <div className="bg-brand-gray rounded-lg p-6 border border-brand-lightgray">
+            <div className="bg-brand-gray rounded-lg p-6 h-full border border-brand-lightgray">
               <h3 className="text-xl font-bold text-brand-blue mb-3">Benefit 1: Select Measurement Points</h3>
               <p className="text-gray-700">Choose specific points on garments to get any measurement of the apparel with precision. Our technology allows for complete customization of measurement points to meet your exact needs.</p>
             </div>
