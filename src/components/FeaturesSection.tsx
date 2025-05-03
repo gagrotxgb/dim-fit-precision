@@ -66,7 +66,7 @@ const FeaturesSection = () => {
 
         {/* Row 2+: Powered Features */}
         <div className="mb-6 text-center text-lg font-medium text-brand-lightgray">
-          And the tech powers the following features:
+          And it powers so many other features:
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {poweredFeatures.map((feature, idx) => (

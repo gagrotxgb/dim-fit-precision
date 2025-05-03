@@ -24,7 +24,7 @@ const HowItWorksSection = () => {
           <div className="relative col-span-1 md:col-span-2">
             <div className="bg-brand-gray rounded-lg p-6 h-full border border-brand-lightgray">
               <h3 className="text-xl font-bold text-brand-blue mb-3">Benefit 1: Users can find any measurement</h3>
-              <div className="grid grid-cols-2 gap-4 items-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
                 <p className="text-gray-700 col-span-1">
                   Choose specific points on garments to get any measurement of the apparel with precision. Our technology allows for complete customization of measurement points to meet your exact needs.
                 </p>
