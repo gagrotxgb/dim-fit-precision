@@ -13,7 +13,7 @@ const HeroSection = () => {
             </Badge>
             
             <h1 className="text-4xl md:text-5xl font-bold text-brand-blue leading-tight">
-              Super Accurate Apparel Try On
+              Super Accurate <br/> Apparel Try On
               <span className="block text-brand-teal mt-2">with 0.1 inch Precision.</span>
             </h1>
             

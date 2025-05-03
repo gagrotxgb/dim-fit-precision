@@ -21,10 +21,20 @@ const HowItWorksSection = () => {
           </div>
           
           {/* Benefit 1 */}
-          <div className="relative">
+          <div className="relative col-span-1 md:col-span-2">
             <div className="bg-brand-gray rounded-lg p-6 h-full border border-brand-lightgray">
-              <h3 className="text-xl font-bold text-brand-blue mb-3">Benefit 1: Select Measurement Points</h3>
-              <p className="text-gray-700">Choose specific points on garments to get any measurement of the apparel with precision. Our technology allows for complete customization of measurement points to meet your exact needs.</p>
+              <h3 className="text-xl font-bold text-brand-blue mb-3">Benefit 1: Users can find any measurement</h3>
+              <div className="grid grid-cols-2 gap-4 items-center">
+                <p className="text-gray-700 col-span-1">
+                  Choose specific points on garments to get any measurement of the apparel with precision. Our technology allows for complete customization of measurement points to meet your exact needs.
+                </p>
+                <div className="col-span-1 flex items-center justify-center">
+                  <div className="w-32 h-32 border-2 border-dashed border-brand-lightgray rounded-lg flex items-center justify-center bg-white text-brand-lightgray">
+                    {/* Image goes here */}
+                    Image Frame
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           
