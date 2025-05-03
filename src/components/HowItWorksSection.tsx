@@ -22,7 +22,7 @@ const HowItWorksSection = () => {
           
           {/* Benefit 1 */}
           <div className="relative">
-            <div className="bg-brand-gray rounded-lg p-6 h-full border border-brand-lightgray">
+            <div className="bg-brand-gray rounded-lg p-6 h-full col-2 border border-brand-lightgray">
               <h3 className="text-xl font-bold text-brand-blue mb-3">Benefit 1: Select Measurement Points</h3>
               <p className="text-gray-700">Choose specific points on garments to get any measurement of the apparel with precision. Our technology allows for complete customization of measurement points to meet your exact needs.</p>
             </div>
