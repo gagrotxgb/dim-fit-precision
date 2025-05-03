@@ -1,11 +1,14 @@
+
 import React from 'react';
 import { ArrowDown, Upload } from 'lucide-react';
+
 const HowItWorksSection = () => {
-  return <section id="how-it-works" className="section-padding bg-white">
+  return (
+    <section id="how-it-works" className="section-padding bg-white">
       <div className="container mx-auto">
         <h2 className="section-title text-center">1 Step Process to Provide 2 Benefits</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
           {/* Step 1 */}
           <div className="relative">
             <div className="absolute -top-4 -left-4 w-10 h-10 bg-brand-teal rounded-full flex items-center justify-center text-white font-bold z-10">
@@ -42,6 +45,8 @@ const HowItWorksSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HowItWorksSection;
