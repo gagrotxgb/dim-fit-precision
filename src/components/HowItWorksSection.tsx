@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { ArrowDown } from 'lucide-react';
-
 const HowItWorksSection = () => {
-  return (
-    <section id="how-it-works" className="section-padding bg-white">
+  return <section id="how-it-works" className="section-padding bg-white">
       <div className="container mx-auto">
         <h2 className="section-title text-center">1 Step Process to Provide 2 Benefits</h2>
         
@@ -27,7 +24,7 @@ const HowItWorksSection = () => {
           
           {/* Benefits */}
           <div className="md:col-span-2 space-y-6">
-            <div className="bg-brand-gray rounded-lg p-6 border border-brand-lightgray">
+            <div className="bg-brand-gray rounded-lg p-6 h-full border border-brand-lightgray">
               <h3 className="text-xl font-bold text-brand-blue mb-3">Benefit 1: Select Measurement Points</h3>
               <p className="text-gray-700">Choose specific points on garments to get any measurement of the apparel with precision. Our technology allows for complete customization of measurement points to meet your exact needs.</p>
             </div>
@@ -39,8 +36,6 @@ const HowItWorksSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HowItWorksSection;
