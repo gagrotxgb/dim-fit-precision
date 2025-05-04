@@ -42,7 +42,7 @@ const HowItWorksSection = () => {
 
     // Animate all paths with a staggered start
     ids.forEach((id, idx) => {
-      const el = document.getElementById(id) as SVGPathElement | null;
+      const el = document.getElementById(id) as unknown as SVGPathElement | null;
       if (el) {
         // Remove any inline dashoffset set by JSX
         el.style.strokeDashoffset = '';
