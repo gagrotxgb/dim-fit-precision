@@ -1,20 +1,19 @@
-
 import React from 'react';
 import { Ruler, Eye, Database, Layers, User, Search, ChartBar, Shield, Zap } from 'lucide-react';
 
 const poweredFeatures = [
-  {
-    title: 'Dynamic, SKU-Level Sizing',
-    icon: <Database className="h-5 w-5 text-brand-teal" />,
-  },
-  {
-    title: 'Custom Measurement Capabilities',
-    icon: <Ruler className="h-5 w-5 text-brand-teal" />,
-  },
-  {
-    title: 'Automatically provides all dimensions',
-    icon: <Layers className="h-5 w-5 text-brand-teal" />,
-  },
+  // {
+  //   title: 'Dynamic, SKU-Level Sizing',
+  //   icon: <Database className="h-5 w-5 text-brand-teal" />,
+  // },
+  // {
+  //   title: 'Custom Measurement Capabilities',
+  //   icon: <Ruler className="h-5 w-5 text-brand-teal" />,
+  // },
+  // {
+  //   title: 'Automatically provides all dimensions',
+  //   icon: <Layers className="h-5 w-5 text-brand-teal" />,
+  // },
   {
     title: 'Shop My Size',
     description: 'Body-measurement based search for perfect size recommendations',

@@ -280,8 +280,8 @@ const HowItWorksSection = () => {
                     <Star className="h-5 w-5 text-brand-blue" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Precise Accuracy</h4>
-                    <p className="text-sm text-gray-600">Get measurements with 0.1 inch accuracy</p>
+                    <h4 className="font-semibold text-gray-900">Dynamic, SKU-Level Sizing</h4>
+                    <p className="text-sm text-gray-600">Each product and size can have a unique fit</p>
                   </div>
                 </div>
                 
@@ -291,8 +291,8 @@ const HowItWorksSection = () => {
                     <Users className="h-5 w-5 text-brand-blue" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">Complete Customization</h4>
-                    <p className="text-sm text-gray-600">Tailor measurement points to meet your exact needs</p>
+                    <h4 className="font-semibold text-gray-900">Automatically provides all dimensions</h4>
+                    <p className="text-sm text-gray-600">All Apparel measurement are automaticallly computed and provided to you</p>
                   </div>
                 </div>
               </div>
