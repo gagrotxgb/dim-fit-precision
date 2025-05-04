@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Ruler, Eye, Database, Layers, User, Search, ChartBar, Shield, Zap } from 'lucide-react';
 
@@ -64,15 +65,15 @@ const FeaturesSection = () => {
           </div>
         </div>
 
-        {/* Row 2+: Powered Features */}
+        {/* Powered Features */}
         <div className="mb-6 text-center text-lg font-medium text-brand-lightgray">
           And it powers so many other features:
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {poweredFeatures.map((feature, idx) => (
             <div
               key={idx}
-              className="flex items-start space-x-3"
+              className="flex items-start space-x-3 bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-colors"
             >
               <div>
                 {feature.icon}
