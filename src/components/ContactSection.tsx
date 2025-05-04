@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Instagram, Linkedin } from 'lucide-react';
 import { toast } from 'sonner';
@@ -122,7 +121,7 @@ const ContactSection = () => {
           
           {/* Map and Contact Info */}
           <div className="flex flex-col justify-between">
-            <div className="bg-brand-gray rounded-lg h-64 md:h-60 w-full flex items-center justify-center">
+            <div className="bg-brand-gray rounded-lg h-64 md:h-60 w-full hidden md:flex items-center justify-center">
               <p className="text-brand-blue text-lg">Contact information</p>
             </div>
             
