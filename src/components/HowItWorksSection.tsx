@@ -86,9 +86,9 @@ const HowItWorksSection = () => {
                 <p className="text-gray-700 mb-4">
                   Upload images of your products clicked using our marker to our platform
                 </p>
-                <div className="mt-auto flex justify-center">
+                {/* <div className="mt-auto flex justify-center">
                   <Upload size={48} className="text-brand-teal" />
-                </div>
+                </div> */}
               </CardContent>
             </Card>
           </div>
@@ -302,11 +302,49 @@ const HowItWorksSection = () => {
           {/* Benefit B Card */}
           <Card className="shadow-md overflow-hidden">
             <div className="bg-gray-200 h-64 flex items-center justify-center">
-              <img
-                src="https://placehold.co/600x400?text=Virtual+Try-On"
-                alt="Virtual try-on technology"
-                className="w-full h-full object-cover"
-              />
+              <div className="w-full h-full grid grid-cols-2">
+                {/* Left: Sliders */}
+                <div className="flex flex-col justify-center items-center px-4">
+                  <div className="w-full mb-8">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Weight</label>
+                    <div className="flex items-center">
+                      <span className="text-xs text-gray-500 mr-2">40kg</span>
+                      <input
+                        type="range"
+                        min={40}
+                        max={120}
+                        value={65}
+                        readOnly
+                        className="w-full accent-brand-blue pointer-events-none"
+                        style={{ pointerEvents: 'none' }}
+                      />
+                      <span className="text-xs text-gray-500 ml-2">120kg</span>
+                    </div>
+                    <div className="text-xs text-center text-gray-700 mt-1">65 kg</div>
+                  </div>
+                  <div className="w-full">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Height</label>
+                    <div className="flex items-center">
+                      <span className="text-xs text-gray-500 mr-2">140cm</span>
+                      <input
+                        type="range"
+                        min={140}
+                        max={200}
+                        value={170}
+                        readOnly
+                        className="w-full accent-brand-blue pointer-events-none"
+                        style={{ pointerEvents: 'none' }}
+                      />
+                      <span className="text-xs text-gray-500 ml-2">200cm</span>
+                    </div>
+                    <div className="text-xs text-center text-gray-700 mt-1">170 cm</div>
+                  </div>
+                </div>
+                {/* Right: Slideshow */}
+                <div className="flex items-center justify-center h-full">
+                  <Slideshow />
+                </div>
+              </div>
             </div>
             <CardContent className="p-6">
               <h3 className="text-xl font-bold text-brand-blue text-center mb-2">Benefit B</h3>
@@ -354,5 +392,27 @@ const HowItWorksSection = () => {
     </section>
   );
 };
+
+function Slideshow() {
+  const images = [
+    "/ChatGPT Image May 11, 2025, 1-Photoroom.png",
+    "/ChatGPT Image May 11, 2025, 2-Photoroom.png",
+    "/ChatGPT Image May 11, 2025, 4-Photoroom.png",
+    "/ChatGPT Image May 11, 2025, 3-Photoroom.png",
+  ];
+  const [idx, setIdx] = React.useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => setIdx(i => (i + 1) % images.length), 2000);
+    return () => clearInterval(timer);
+  }, []);
+  return (
+    <img
+      src={images[idx]}
+      alt="Virtual try-on technology"
+      className="object-contain rounded"
+      style={{ height: '100%', width: 'auto', maxHeight: 220, maxWidth: 320, display: 'block' }}
+    />
+  );
+}
 
 export default HowItWorksSection;
