@@ -103,7 +103,7 @@ const HowItWorksSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Benefit A Card */}
           <Card className="shadow-md overflow-hidden">
-            <div className="bg-gray-200 h-64 flex items-center justify-center">
+            <div className="relative bg-gray-200 h-64 flex items-center justify-center">
               {/* Inline SVG replaces the image */}
               <svg
                 width="auto"
@@ -260,7 +260,11 @@ const HowItWorksSection = () => {
                         class="measurement" stroke="#FF0000" stroke-width="5" fill="none"
                         stroke-dasharray="1000" stroke-dashoffset="1000"/>
 </svg>
-
+              {/* Badge in bottom right corner */}
+              <span className="absolute bottom-3 right-3 inline-flex items-center bg-brand-teal/90 text-white text-sm px-3 py-1 rounded-full font-semibold shadow-lg z-10">
+                <svg className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none"><path d="M4 20V17M4 17V7C4 5.89543 4.89543 5 6 5H18C19.1046 5 20 5.89543 20 7V17M4 17H20M20 17V20M8 9H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                0.1 inch Accuracy
+              </span>
             </div>
             <CardContent className="p-6">
               <h3 className="text-xl font-bold text-brand-blue text-center mb-2">Benefit A</h3>
@@ -391,7 +395,7 @@ const HowItWorksSection = () => {
                     <Users className="h-5 w-5 text-brand-blue" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">On Your Body</h4>
+                    <h4 className="font-semibold text-gray-900">Like Your Body</h4>
                     <p className="text-sm text-gray-600">Personalized visualization using your actual body measurements</p>
                   </div>
                 </div>

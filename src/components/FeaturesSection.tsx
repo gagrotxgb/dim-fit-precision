@@ -42,7 +42,7 @@ const FeaturesSection = () => {
   return (
     <section id="features" className="section-padding bg-brand-blue text-white">
       <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Key Features</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Other Key Features</h2>
         
         {/* Row 1: Technology Highlight */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
@@ -51,7 +51,7 @@ const FeaturesSection = () => {
               <Ruler className="h-7 w-7 text-brand-teal" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white mb-1">The Technology: Custom Marker</h3>
+              <h3 className="text-xl font-bold text-white mb-1">The Technology: A Custom Marker</h3>
               <div className="flex flex-col md:flex-row md:items-center gap-2">
                 <span className="inline-flex items-center bg-brand-teal/90 text-white text-sm px-3 py-1 rounded-full font-semibold mr-2 mb-2 md:mb-0">
                   <Ruler className="h-4 w-4 mr-1" /> 0.1 inch Accuracy
