@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { Upload, CheckCircle, Star, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
+const weightValues = [60, 75, 90, 85];
+const heightValues = [183, 183, 183, 186];
+
 const HowItWorksSection = () => {
   useEffect(() => {
     // IDs of the animated paths
@@ -60,6 +63,8 @@ const HowItWorksSection = () => {
       timeouts.forEach(clearTimeout);
     };
   }, []);
+
+  const [weightIdx, setWeightIdx] = React.useState(0);
 
   return (
     <section id="how-it-works" className="section-padding bg-white">
@@ -308,41 +313,47 @@ const HowItWorksSection = () => {
                   <div className="w-full mb-8">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Weight</label>
                     <div className="flex items-center">
-                      <span className="text-xs text-gray-500 mr-2">40kg</span>
+                      <span className="text-xs text-gray-500 mr-2">60kg</span>
                       <input
                         type="range"
-                        min={40}
-                        max={120}
-                        value={65}
+                        min={60}
+                        max={100}
+                        value={weightValues[weightIdx]}
                         readOnly
-                        className="w-full accent-brand-blue pointer-events-none"
-                        style={{ pointerEvents: 'none' }}
+                        className="w-full accent-brand-teal pointer-events-none"
+                        style={{
+                          pointerEvents: 'none',
+                          backgroundColor: '#e5e7eb', // Tailwind gray-200
+                        }}
                       />
-                      <span className="text-xs text-gray-500 ml-2">120kg</span>
+                      <span className="text-xs text-gray-500 ml-2">100kg</span>
                     </div>
-                    <div className="text-xs text-center text-gray-700 mt-1">65 kg</div>
+                    <div className="text-xs text-center text-gray-700 mt-1">{weightValues[weightIdx]} kg</div>
                   </div>
                   <div className="w-full">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Height</label>
                     <div className="flex items-center">
-                      <span className="text-xs text-gray-500 mr-2">140cm</span>
+                      <span className="text-xs text-gray-500 mr-2">170cm</span>
                       <input
                         type="range"
-                        min={140}
+                        min={170}
                         max={200}
-                        value={170}
+                        value={heightValues[weightIdx]}
                         readOnly
-                        className="w-full accent-brand-blue pointer-events-none"
-                        style={{ pointerEvents: 'none' }}
+                        className="w-full accent-brand-teal pointer-events-none"
+                        style={{
+                          pointerEvents: 'none',
+                          backgroundColor: '#e5e7eb', // Tailwind gray-200
+                        }}
                       />
                       <span className="text-xs text-gray-500 ml-2">200cm</span>
                     </div>
-                    <div className="text-xs text-center text-gray-700 mt-1">170 cm</div>
+                    <div className="text-xs text-center text-gray-700 mt-1">{heightValues[weightIdx]} cm</div>
                   </div>
                 </div>
                 {/* Right: Slideshow */}
                 <div className="flex items-center justify-center h-full">
-                  <Slideshow />
+                  <Slideshow onImageChange={setWeightIdx} />
                 </div>
               </div>
             </div>
@@ -393,14 +404,17 @@ const HowItWorksSection = () => {
   );
 };
 
-function Slideshow() {
+function Slideshow({ onImageChange }: { onImageChange?: (idx: number) => void }) {
   const images = [
     "/ChatGPT Image May 11, 2025, 1-Photoroom.png",
     "/ChatGPT Image May 11, 2025, 2-Photoroom.png",
-    "/ChatGPT Image May 11, 2025, 4-Photoroom.png",
     "/ChatGPT Image May 11, 2025, 3-Photoroom.png",
+    "/ChatGPT Image May 11, 2025, 4-Photoroom.png",
   ];
   const [idx, setIdx] = React.useState(0);
+  useEffect(() => {
+    if (onImageChange) onImageChange(idx);
+  }, [idx, onImageChange]);
   useEffect(() => {
     const timer = setInterval(() => setIdx(i => (i + 1) % images.length), 2000);
     return () => clearInterval(timer);
@@ -410,7 +424,7 @@ function Slideshow() {
       src={images[idx]}
       alt="Virtual try-on technology"
       className="object-contain rounded"
-      style={{ height: '100%', width: 'auto', maxHeight: 220, maxWidth: 320, display: 'block' }}
+      style={{ height: '100%', width: 'auto', maxHeight: 245, maxWidth: 320, display: 'block' }}
     />
   );
 }
