@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 
@@ -46,22 +45,20 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <div className="relative h-full">
-            <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 animate-fade-in">
-              <div className="aspect-[4/3] bg-brand-lightgray rounded-lg mb-6 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto bg-brand-teal/20 rounded-full flex items-center justify-center">
-                    <div className="w-24 h-24 bg-brand-teal/30 rounded-full flex items-center justify-center">
-                      <div className="w-16 h-16 bg-brand-teal/50 rounded-full"></div>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-brand-blue font-medium">Precision Measurement Technology</p>
-                </div>
+          <div className="relative h-full flex items-center justify-center min-h-[400px]">
+            <div className="grid grid-cols-2 gap-x-6 h-full items-center" style={{minHeight: '320px'}}>
+              {/* Column 1: Centered card */}
+              <div className="flex items-center justify-center h-full">
+                <div className="aspect-[4/5] w-40 md:w-56 bg-brand-lightgray rounded-lg shadow-xl flex items-center justify-center"></div>
               </div>
-              <div className="space-y-3">
-                <div className="h-3 bg-brand-lightgray rounded-full w-full"></div>
-                <div className="h-3 bg-brand-lightgray rounded-full w-3/4"></div>
-                <div className="h-3 bg-brand-lightgray rounded-full w-1/2"></div>
+              {/* Column 2: Two cards, one above and one below the midpoint of col 1 card */}
+              <div className="flex flex-col justify-between h-full py-4 md:py-8" style={{minHeight: '320px'}}>
+                <div className="flex items-start justify-center">
+                  <div className="aspect-[4/5] w-40 md:w-56 bg-brand-lightgray rounded-lg shadow-xl flex items-center justify-center"></div>
+                </div>
+                <div className="flex items-end justify-center">
+                  <div className="aspect-[4/5] w-40 md:w-56 bg-brand-lightgray rounded-lg shadow-xl flex items-center justify-center"></div>
+                </div>
               </div>
             </div>
           </div>
