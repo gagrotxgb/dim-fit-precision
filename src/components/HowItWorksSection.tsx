@@ -335,7 +335,8 @@ const HowItWorksSection = () => {
                 <div className="flex flex-col justify-center items-center px-4">
                   <div className="w-full mb-8">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Weight</label>
-                    <div className="flex items-center">
+                    {/* Desktop (>=500px): show slider and min/max */}
+                    <div className="hidden min-[500px]:flex items-center">
                       <span className="text-xs text-gray-500 mr-2">60kg</span>
                       <input
                         type="range"
@@ -351,11 +352,16 @@ const HowItWorksSection = () => {
                       />
                       <span className="text-xs text-gray-500 ml-2">100kg</span>
                     </div>
-                    <div className="text-xs text-center text-gray-700 mt-1">{weightValues[weightIdx]} kg</div>
+                    {/* Mobile (<500px): just show value */}
+                    <div className="flex min-[500px]:hidden items-center justify-left">
+                      <span className="text-lg font-semibold text-brand-teal">{weightValues[weightIdx]} kg</span>
+                    </div>
+                    <div className="text-xs text-center text-gray-700 mt-1 min-[500px]:block hidden">{weightValues[weightIdx]} kg</div>
                   </div>
                   <div className="w-full">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Height</label>
-                    <div className="flex items-center">
+                    {/* Desktop (>=500px): show slider and min/max */}
+                    <div className="hidden min-[500px]:flex items-center">
                       <span className="text-xs text-gray-500 mr-2">170cm</span>
                       <input
                         type="range"
@@ -371,7 +377,11 @@ const HowItWorksSection = () => {
                       />
                       <span className="text-xs text-gray-500 ml-2">200cm</span>
                     </div>
-                    <div className="text-xs text-center text-gray-700 mt-1">{heightValues[weightIdx]} cm</div>
+                    {/* Mobile (<500px): just show value */}
+                    <div className="flex min-[500px]:hidden items-center justify-left">
+                      <span className="text-lg font-semibold text-brand-teal">{heightValues[weightIdx]} cm</span>
+                    </div>
+                    <div className="text-xs text-center text-gray-700 mt-1 min-[500px]:block hidden">{heightValues[weightIdx]} cm</div>
                   </div>
                 </div>
                 {/* Right: Slideshow */}
