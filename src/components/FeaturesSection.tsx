@@ -62,7 +62,7 @@ const FeaturesSection = () => {
         {/* Features Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* The technology card (spans two rows on desktop) */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:row-span-3 order-1">
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:row-span-6 order-1">
             <CardContent className="p-6 h-full flex flex-col">
               <div className="flex items-center mb-4">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-12 w-12">
@@ -99,7 +99,7 @@ const FeaturesSection = () => {
           </Card>
           
           {/* Shop my fit */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-2">
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:row-span-3 order-2">
             <CardContent className="p-6">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
@@ -114,7 +114,7 @@ const FeaturesSection = () => {
           </Card>
           
           {/* Product fit analytics */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-4 lg:order-3">
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-4 lg:row-span-2 lg:order-3">
             <CardContent className="p-6">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
@@ -129,7 +129,7 @@ const FeaturesSection = () => {
           </Card>
           
           {/* Shop my size */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-3 lg:order-4">
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-3 lg:row-span-3 lg:order-6">
             <CardContent className="p-6">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
@@ -144,7 +144,7 @@ const FeaturesSection = () => {
           </Card>
           
           {/* Impacts 100% of customers */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-5">
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:row-span-2 order-6">
             <CardContent className="p-6">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
@@ -159,7 +159,7 @@ const FeaturesSection = () => {
           </Card>
           
           {/* Plug and play solution */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-6">
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:row-span-2 order-5">
             <CardContent className="p-6">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
