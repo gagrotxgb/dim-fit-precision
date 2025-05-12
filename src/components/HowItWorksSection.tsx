@@ -452,20 +452,98 @@ function Slideshow({ onImageChange }: { onImageChange?: (idx: number) => void })
     "/ChatGPT Image May 11, 2025, 4-Photoroom.png",
   ];
   const [idx, setIdx] = React.useState(0);
+  const [nextIdx, setNextIdx] = React.useState<number | null>(null);
+  const [isFading, setIsFading] = React.useState(false);
+
   useEffect(() => {
     if (onImageChange) onImageChange(idx);
   }, [idx, onImageChange]);
+
   useEffect(() => {
-    const timer = setInterval(() => setIdx(i => (i + 1) % images.length), 2000);
-    return () => clearInterval(timer);
-  }, []);
+    let fadeTimeout: NodeJS.Timeout;
+    let intervalTimeout: NodeJS.Timeout;
+
+    intervalTimeout = setTimeout(() => {
+      setNextIdx((idx + 1) % images.length);
+      setIsFading(true);
+      fadeTimeout = setTimeout(() => {
+        setIdx(i => (i + 1) % images.length);
+        setNextIdx(null);
+        setIsFading(false);
+      }, 400); // fade duration
+    }, 2000);
+
+    return () => {
+      clearTimeout(intervalTimeout);
+      clearTimeout(fadeTimeout);
+    };
+  }, [idx, images.length]);
+
+  // Crossfade: both images rendered, their opacities animated together
   return (
-    <img
-      src={images[idx]}
-      alt="Virtual try-on technology"
-      className="object-contain rounded"
-      style={{ height: '100%', width: 'auto', maxHeight: 245, maxWidth: 320, display: 'block' }}
-    />
+    <div
+      style={{
+        position: 'relative',
+        height: 245,
+        width: 320,
+        maxWidth: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {/* Current image (fading out if crossfading) */}
+      <img
+        src={images[idx]}
+        alt="Virtual try-on technology"
+        className="object-contain rounded"
+        style={{
+          height: '100%',
+          width: 'auto',
+          maxHeight: 245,
+          maxWidth: 320,
+          display: 'block',
+          position: 'absolute',
+          left: typeof window !== "undefined" && window.innerWidth < 500 ? '100%' : '50%',
+          top: '50%',
+          transform: typeof window !== "undefined" && window.innerWidth < 500
+            ? 'translate(-100%, -50%)'
+            : 'translate(-50%, -50%)',
+          opacity: isFading ? 0 : 1,
+          transition: 'opacity 400ms ease',
+          zIndex: 1,
+          pointerEvents: 'none',
+        }}
+        draggable={false}
+      />
+      {/* Next image (fading in if crossfading) */}
+      {nextIdx !== null && (
+        <img
+          src={images[nextIdx]}
+          alt=""
+          aria-hidden="true"
+          className="object-contain rounded"
+          style={{
+            height: '100%',
+            width: 'auto',
+            maxHeight: 245,
+            maxWidth: 320,
+            display: 'block',
+            position: 'absolute',
+            left: typeof window !== "undefined" && window.innerWidth < 500 ? '100%' : '50%',
+            top: '50%',
+            transform: typeof window !== "undefined" && window.innerWidth < 500
+              ? 'translate(-100%, -50%)'
+              : 'translate(-50%, -50%)',
+            opacity: isFading ? 1 : 0,
+            transition: 'opacity 400ms ease',
+            zIndex: 2,
+            pointerEvents: 'none',
+          }}
+          draggable={false}
+        />
+      )}
+    </div>
   );
 }
 
