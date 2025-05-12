@@ -385,8 +385,15 @@ const HowItWorksSection = () => {
                   </div>
                 </div>
                 {/* Right: Slideshow */}
-                <div className="flex items-center justify-center h-full">
-                  <Slideshow onImageChange={setWeightIdx} />
+                <div className="flex items-center justify-center h-full overflow-visible">
+                  <div className="w-full flex min-[500px]:justify-center justify-end overflow-visible relative">
+                    {/* On mobile, absolutely position the image to the right, allow overflow left */}
+                    <div className="max-w-full overflow-visible min-[500px]:static absolute right-0 top-1/2 min-[500px]:top-auto min-[500px]:right-auto min-[500px]:transform-none -translate-y-1/2 min-[500px]:-translate-y-0"
+                      style={{ maxWidth: 'none', width: 'auto' }}
+                    >
+                      <Slideshow onImageChange={setWeightIdx} />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
