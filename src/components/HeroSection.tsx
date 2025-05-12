@@ -1,6 +1,30 @@
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 
+// --- Slideshow component from HowItWorksSection.tsx ---
+function Slideshow() {
+  const images = [
+    "/ChatGPT Image May 11, 2025, 1-Photoroom.png",
+    "/ChatGPT Image May 11, 2025, 2-Photoroom.png",
+    "/ChatGPT Image May 11, 2025, 3-Photoroom.png",
+    "/ChatGPT Image May 11, 2025, 4-Photoroom.png",
+  ];
+  const [idx, setIdx] = React.useState(0);
+  React.useEffect(() => {
+    const timer = setInterval(() => setIdx(i => (i + 1) % images.length), 2000);
+    return () => clearInterval(timer);
+  }, []);
+  return (
+    <img
+      src={images[idx]}
+      alt="Virtual try-on technology"
+      className="object-contain rounded"
+      style={{ height: '100%', width: 'auto', maxHeight: 245, maxWidth: 320, display: 'block' }}
+    />
+  );
+}
+// --- end Slideshow ---
+
 const HeroSection = () => {
   return (
     <section id="hero" className="pt-32 pb-20 md:pt-40 md:pb-24 px-4 md:px-8 bg-gradient-to-br from-brand-gray to-white">
@@ -57,7 +81,31 @@ const HeroSection = () => {
                   <div className="aspect-[4/5] w-40 md:w-56 bg-brand-lightgray rounded-lg shadow-xl flex items-center justify-center"></div>
                 </div>
                 <div className="flex items-end justify-center">
-                  <div className="aspect-[4/5] w-40 md:w-56 bg-brand-lightgray rounded-lg shadow-xl flex items-center justify-center"></div>
+                  {/* --- Inserted: Slideshow and animation from Benefit B --- */}
+                  <div className="aspect-[4/5] w-40 md:w-56 bg-brand-lightgray rounded-lg shadow-xl flex items-center justify-center overflow-visible relative">
+                    {/* Animation SVG (copied from HowItWorksSection.tsx, Benefit B image div) */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      {/* Example animated SVG: simple pulse ring for demo */}
+                      <svg width="100" height="100" viewBox="0 0 100 100">
+                        <circle
+                          cx="50"
+                          cy="50"
+                          r="40"
+                          stroke="#14b8a6"
+                          strokeWidth="4"
+                          fill="none"
+                        >
+                          <animate attributeName="r" values="40;45;40" dur="1.5s" repeatCount="indefinite" />
+                          <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />
+                        </circle>
+                      </svg>
+                    </div>
+                    {/* Slideshow */}
+                    <div className="relative z-10">
+                      <Slideshow />
+                    </div>
+                  </div>
+                  {/* --- end inserted --- */}
                 </div>
               </div>
             </div>
