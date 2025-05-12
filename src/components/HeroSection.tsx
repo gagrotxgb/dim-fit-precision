@@ -69,7 +69,8 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <div className="relative h-full flex items-center justify-center min-h-[400px]">
+          {/* Hide cards below md (960px) */}
+          <div className="relative h-full items-center justify-center min-h-[400px] hidden md:flex">
             <div className="grid grid-cols-2 gap-x-6 h-full items-center" style={{minHeight: '320px'}}>
               {/* Column 1: Centered card */}
               <div className="flex items-center justify-center h-full">
