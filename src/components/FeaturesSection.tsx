@@ -50,7 +50,7 @@ const FeaturesSection = () => {
           
           {/* Column 2 */}
           {/* Shop My Fit - column 2, row 1 */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-3/2 order-2">
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-1 order-2">
             <CardContent className="p-6 h-full">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
@@ -65,7 +65,7 @@ const FeaturesSection = () => {
           </Card>
           
           {/* Shop My Size - column 2, row 2 */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-3/2 order-3">
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-2 order-3">
             <CardContent className="p-6 h-full">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
@@ -95,22 +95,7 @@ const FeaturesSection = () => {
             </CardContent>
           </Card>
           
-          {/* Impacts 100% of Customers - column 3, row 2 */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-1 order-5">
-            <CardContent className="p-6 h-full">
-              <div className="flex items-center mb-3">
-                <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
-                  <Shield className="h-5 w-5 text-brand-teal" />
-                </div>
-                <h3 className="text-lg font-bold ml-3">Impacts 100% of Customers</h3>
-              </div>
-              <p className="text-sm text-brand-lightgray">
-                Every shopper benefits from improved sizing confidence, leading to fewer returns and higher satisfaction.
-              </p>
-            </CardContent>
-          </Card>
-          
-          {/* Plug and Play Solution - column 3, row 3 */}
+          {/* Plug and Play Solution - column 3, row 2 */}
           <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-1 order-6">
             <CardContent className="p-6 h-full">
               <div className="flex items-center mb-3">
@@ -121,6 +106,21 @@ const FeaturesSection = () => {
               </div>
               <p className="text-sm text-brand-lightgray">
                 Easy integration with your existing e-commerce platform. Get up and running quickly with minimal setup.
+              </p>
+            </CardContent>
+          </Card>
+          
+          {/* Impacts 100% of Customers - column 3, row 3 */}
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-1 order-5">
+            <CardContent className="p-6 h-full">
+              <div className="flex items-center mb-3">
+                <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
+                  <Shield className="h-5 w-5 text-brand-teal" />
+                </div>
+                <h3 className="text-lg font-bold ml-3">Impacts 100% of Customers</h3>
+              </div>
+              <p className="text-sm text-brand-lightgray">
+                Every shopper benefits from improved sizing confidence, leading to fewer returns and higher satisfaction.
               </p>
             </CardContent>
           </Card>
