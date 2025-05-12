@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 
@@ -46,7 +45,7 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <div className="relative h-full">
+          <div className="relative h-full hidden [@media(min-width:800px)]:block">
             <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 animate-fade-in">
               <div className="aspect-[4/3] bg-brand-lightgray rounded-lg mb-6 flex items-center justify-center">
                 <div className="text-center">
