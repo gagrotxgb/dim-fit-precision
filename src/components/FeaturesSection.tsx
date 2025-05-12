@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { Ruler, Eye, Search, ChartBar, Shield, Zap, User } from 'lucide-react';
+import { Ruler, Eye, Search, ChartBar, Shield, Zap, User, CircuitBoard } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 const FeaturesSection = () => {
   const features = [
@@ -9,12 +10,11 @@ const FeaturesSection = () => {
       id: 'technology',
       title: 'The Technology: A Custom Marker',
       description: 'Our proprietary technology ensures accurate measurements and perfect fit recommendations.',
-      icon: <Ruler className="h-7 w-7 text-brand-teal" />,
+      icon: <CircuitBoard className="h-7 w-7 text-brand-teal" />,
       badges: [
         { icon: <Ruler className="h-4 w-4 mr-1" />, text: '0.1 inch Accuracy' },
         { icon: <Eye className="h-4 w-4 mr-1" />, text: 'Fit-accurate Virtual Try-on' }
       ],
-      gridArea: 'tech',
       order: 1
     },
     {
@@ -22,7 +22,6 @@ const FeaturesSection = () => {
       title: 'Shop My Fit',
       description: 'Fit-based search to match your preferred garment fit',
       icon: <Search className="h-6 w-6 text-brand-teal" />,
-      gridArea: 'fit',
       order: 2
     },
     {
@@ -30,7 +29,6 @@ const FeaturesSection = () => {
       title: 'Shop My Size',
       description: 'Body-measurement based search for perfect size recommendations',
       icon: <User className="h-6 w-6 text-brand-teal" />,
-      gridArea: 'size',
       order: 3
     },
     {
@@ -38,7 +36,6 @@ const FeaturesSection = () => {
       title: 'Product Fit Analytics',
       description: 'Gain valuable insights on how your products fit various body types',
       icon: <ChartBar className="h-6 w-6 text-brand-teal" />,
-      gridArea: 'analytics',
       order: 4
     },
     {
@@ -46,7 +43,6 @@ const FeaturesSection = () => {
       title: 'Impacts 100% of Customers',
       description: 'Every shopper benefits from improved sizing confidence',
       icon: <Shield className="h-6 w-6 text-brand-teal" />,
-      gridArea: 'impact',
       order: 5
     },
     {
@@ -54,7 +50,6 @@ const FeaturesSection = () => {
       title: 'Plug and Play Solution',
       description: 'Easy integration with your existing e-commerce platform',
       icon: <Zap className="h-6 w-6 text-brand-teal" />,
-      gridArea: 'plug',
       order: 6
     }
   ];
@@ -67,11 +62,11 @@ const FeaturesSection = () => {
         {/* Features Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* The technology card (spans two rows on desktop) */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:row-span-2 order-1">
-            <CardContent className="p-6">
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:row-span-3 order-1">
+            <CardContent className="p-6 h-full flex flex-col">
               <div className="flex items-center mb-4">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-12 w-12">
-                  <Ruler className="h-6 w-6 text-brand-teal" />
+                  <CircuitBoard className="h-6 w-6 text-brand-teal" />
                 </div>
                 <h3 className="text-xl font-bold ml-4">The Technology: A Custom Marker</h3>
               </div>
@@ -80,12 +75,24 @@ const FeaturesSection = () => {
                 Our custom marker technology provides precise measurements for virtual try-ons and perfect fit recommendations.
               </p>
               
-              <div className="space-y-3">
-                <div className="inline-flex items-center bg-brand-teal/90 text-white text-sm px-3 py-1 rounded-full font-semibold mr-2">
-                  <Ruler className="h-4 w-4 mr-1" /> 0.1 inch Accuracy
+              <div className="mt-auto space-y-4">
+                <div className="relative overflow-hidden rounded-lg bg-white/5 p-4 mb-4">
+                  <div className="absolute -top-10 -right-10 w-20 h-20 bg-brand-teal/20 rounded-full blur-xl"></div>
+                  <div className="relative z-10">
+                    <h4 className="font-medium text-brand-teal mb-1">Revolutionary Approach</h4>
+                    <p className="text-sm text-brand-lightgray">
+                      Unlike traditional sizing methods, our technology captures precise body measurements.
+                    </p>
+                  </div>
                 </div>
-                <div className="inline-flex items-center bg-brand-teal/90 text-white text-sm px-3 py-1 rounded-full font-semibold">
-                  <Eye className="h-4 w-4 mr-1" /> Fit-accurate, Size-accurate Virtual Try-on
+                
+                <div className="flex flex-wrap gap-2">
+                  <div className="inline-flex items-center bg-brand-teal/90 text-white text-sm px-3 py-1 rounded-full font-semibold">
+                    <Ruler className="h-4 w-4 mr-1" /> 0.1 inch Accuracy
+                  </div>
+                  <div className="inline-flex items-center bg-brand-teal/90 text-white text-sm px-3 py-1 rounded-full font-semibold">
+                    <Eye className="h-4 w-4 mr-1" /> Fit-accurate Virtual Try-on
+                  </div>
                 </div>
               </div>
             </CardContent>
