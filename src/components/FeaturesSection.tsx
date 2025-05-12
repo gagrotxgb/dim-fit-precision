@@ -76,7 +76,7 @@ const FeaturesSection = () => {
               </p>
               
               <div className="mt-auto space-y-4">
-                <div className="relative overflow-hidden rounded-lg bg-white/5 p-4 mb-4">
+                {/* <div className="relative overflow-hidden rounded-lg bg-white/5 p-4 mb-4">
                   <div className="absolute -top-10 -right-10 w-20 h-20 bg-brand-teal/20 rounded-full blur-xl"></div>
                   <div className="relative z-10">
                     <h4 className="font-medium text-brand-teal mb-1">Revolutionary Approach</h4>
@@ -84,7 +84,7 @@ const FeaturesSection = () => {
                       Unlike traditional sizing methods, our technology captures precise body measurements.
                     </p>
                   </div>
-                </div>
+                </div> */}
                 
                 <div className="flex flex-wrap gap-2">
                   <div className="inline-flex items-center bg-brand-teal/90 text-white text-sm px-3 py-1 rounded-full font-semibold">
