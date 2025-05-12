@@ -2,67 +2,17 @@
 import React from 'react';
 import { Ruler, Eye, Search, ChartBar, Shield, Zap, User, CircuitBoard } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 
 const FeaturesSection = () => {
-  const features = [
-    {
-      id: 'technology',
-      title: 'The Technology: A Custom Marker',
-      description: 'Our proprietary technology ensures accurate measurements and perfect fit recommendations.',
-      icon: <CircuitBoard className="h-7 w-7 text-brand-teal" />,
-      badges: [
-        { icon: <Ruler className="h-4 w-4 mr-1" />, text: '0.1 inch Accuracy' },
-        { icon: <Eye className="h-4 w-4 mr-1" />, text: 'Fit-accurate Virtual Try-on' }
-      ],
-      order: 1
-    },
-    {
-      id: 'shop-fit',
-      title: 'Shop My Fit',
-      description: 'Fit-based search to match your preferred garment fit',
-      icon: <Search className="h-6 w-6 text-brand-teal" />,
-      order: 2
-    },
-    {
-      id: 'shop-size',
-      title: 'Shop My Size',
-      description: 'Body-measurement based search for perfect size recommendations',
-      icon: <User className="h-6 w-6 text-brand-teal" />,
-      order: 3
-    },
-    {
-      id: 'analytics',
-      title: 'Product Fit Analytics',
-      description: 'Gain valuable insights on how your products fit various body types',
-      icon: <ChartBar className="h-6 w-6 text-brand-teal" />,
-      order: 4
-    },
-    {
-      id: 'impact',
-      title: 'Impacts 100% of Customers',
-      description: 'Every shopper benefits from improved sizing confidence',
-      icon: <Shield className="h-6 w-6 text-brand-teal" />,
-      order: 5
-    },
-    {
-      id: 'plug-play',
-      title: 'Plug and Play Solution',
-      description: 'Easy integration with your existing e-commerce platform',
-      icon: <Zap className="h-6 w-6 text-brand-teal" />,
-      order: 6
-    }
-  ];
-
   return (
     <section id="features" className="section-padding bg-brand-blue text-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Other Key Features</h2>
         
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* The technology card (spans two rows on desktop) */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:row-span-3 order-1">
+        {/* Features Grid - Mobile: single column, Desktop: three columns with specific layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* The Technology card - spans 3 rows on desktop, column 1 */}
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-3 order-1">
             <CardContent className="p-6 h-full flex flex-col">
               <div className="flex items-center mb-4">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-12 w-12">
@@ -72,7 +22,7 @@ const FeaturesSection = () => {
               </div>
               
               <p className="mb-6 text-brand-lightgray">
-                Our custom marker technology provides precise measurements for virtual try-ons and perfect fit recommendations.
+                Our proprietary technology ensures accurate measurements and perfect fit recommendations.
               </p>
               
               <div className="mt-auto space-y-4">
@@ -98,9 +48,10 @@ const FeaturesSection = () => {
             </CardContent>
           </Card>
           
-          {/* Shop my fit */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-2">
-            <CardContent className="p-6">
+          {/* Column 2 */}
+          {/* Shop My Fit - column 2, row 1 */}
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-3/2 order-2">
+            <CardContent className="p-6 h-full">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
                   <Search className="h-5 w-5 text-brand-teal" />
@@ -113,24 +64,9 @@ const FeaturesSection = () => {
             </CardContent>
           </Card>
           
-          {/* Product fit analytics */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-4 lg:order-3">
-            <CardContent className="p-6">
-              <div className="flex items-center mb-3">
-                <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
-                  <ChartBar className="h-5 w-5 text-brand-teal" />
-                </div>
-                <h3 className="text-lg font-bold ml-3">Product Fit Analytics</h3>
-              </div>
-              <p className="text-sm text-brand-lightgray">
-                Gain valuable insights about how your products fit various body types and optimize your inventory.
-              </p>
-            </CardContent>
-          </Card>
-          
-          {/* Shop my size */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-3 lg:order-4">
-            <CardContent className="p-6">
+          {/* Shop My Size - column 2, row 2 */}
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-3/2 order-3">
+            <CardContent className="p-6 h-full">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
                   <User className="h-5 w-5 text-brand-teal" />
@@ -143,9 +79,25 @@ const FeaturesSection = () => {
             </CardContent>
           </Card>
           
-          {/* Impacts 100% of customers */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-5">
-            <CardContent className="p-6">
+          {/* Column 3 */}
+          {/* Product Fit Analytics - column 3, row 1 */}
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-1 order-4">
+            <CardContent className="p-6 h-full">
+              <div className="flex items-center mb-3">
+                <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
+                  <ChartBar className="h-5 w-5 text-brand-teal" />
+                </div>
+                <h3 className="text-lg font-bold ml-3">Product Fit Analytics</h3>
+              </div>
+              <p className="text-sm text-brand-lightgray">
+                Gain valuable insights about how your products fit various body types and optimize your inventory.
+              </p>
+            </CardContent>
+          </Card>
+          
+          {/* Impacts 100% of Customers - column 3, row 2 */}
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-1 order-5">
+            <CardContent className="p-6 h-full">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
                   <Shield className="h-5 w-5 text-brand-teal" />
@@ -158,9 +110,9 @@ const FeaturesSection = () => {
             </CardContent>
           </Card>
           
-          {/* Plug and play solution */}
-          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white order-6">
-            <CardContent className="p-6">
+          {/* Plug and Play Solution - column 3, row 3 */}
+          <Card className="bg-white/5 hover:bg-white/10 transition-all border-white/10 text-white lg:col-span-4 lg:row-span-1 order-6">
+            <CardContent className="p-6 h-full">
               <div className="flex items-center mb-3">
                 <div className="flex-shrink-0 flex items-center justify-center bg-white/10 rounded-full h-10 w-10">
                   <Zap className="h-5 w-5 text-brand-teal" />
