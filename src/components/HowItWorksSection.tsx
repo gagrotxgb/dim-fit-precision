@@ -311,9 +311,25 @@ const HowItWorksSection = () => {
                   <div className="bg-brand-lightblue p-2 rounded-full mr-3 mt-1">
                     <CheckCircle className="h-5 w-5 text-brand-blue" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">Fit Accurate</h4>
-                    <p className="text-sm text-gray-600">Real-time visualization of how garments will fit your body</p>
+                  <div className="flex flex-col">
+                    <div className="flex items-center">
+                      <h4 className="font-semibold text-gray-900">Fit Accurate</h4>
+                      {/* World's First badge - styled like 0.1 inch Accuracy badge */}
+                      <span
+                        className="
+                          ml-2
+                          inline-flex
+                          items-center bg-brand-teal/90 text-white text-xs px-2 py-0.5 rounded-full font-semibold shadow-lg z-10
+                        "
+                      >
+                        <svg className="h-3 w-3 mr-1" viewBox="0 0 20 20" fill="none">
+                          <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="2"/>
+                          <path d="M10 5v5l3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        World's First
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-600">Real-life visualization of how garments will fit your body</p>
                   </div>
                 </div>
                 
@@ -324,7 +340,7 @@ const HowItWorksSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Size Accurate</h4>
-                    <p className="text-sm text-gray-600">Precise measurements at 0.1" accuracy for every dimension</p>
+                    <p className="text-sm text-gray-600">Precise measurements at 0.1" accuracy for every size</p>
                   </div>
                 </div>
                 
