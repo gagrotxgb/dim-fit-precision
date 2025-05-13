@@ -17,7 +17,7 @@ const HowItWorksSection = () => {
     
     // Initialize paths with starting state
     ids.forEach(id => {
-      const path = document.getElementById(id) as SVGPathElement | null;
+      const path = document.getElementById(id) as unknown as SVGPathElement | null;
       if (path) {
         const length = path.getTotalLength();
         path.style.strokeDasharray = `${length}`;
@@ -48,7 +48,8 @@ const HowItWorksSection = () => {
         setTimeout(() => {
           if (!animationRef.current.active) return;
           
-          const path = document.getElementById(id) as SVGPathElement | null;
+          const element = document.getElementById(id);
+          const path = element instanceof SVGPathElement ? element : null;
           if (!path) return;
           
           // Use CSS transitions instead of JS animation
