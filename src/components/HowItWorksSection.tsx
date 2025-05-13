@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Upload, CheckCircle, Star, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -6,82 +6,97 @@ const weightValues = [60, 75, 90, 85];
 const heightValues = [183, 183, 183, 186];
 
 const HowItWorksSection = () => {
+  const animationRef = useRef<{ active: boolean }>({ active: true });
+  const animatedPaths = useRef<Set<string>>(new Set());
+  const observer = useRef<IntersectionObserver | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
     // IDs of the animated paths
     const ids = ['segmentA1', 'segmentA2', 'segmentA3', 'segmentA4', 'segmentA5'];
-    let timeouts: NodeJS.Timeout[] = [];
-    let running = true;
-
-    // Optimized animatePath using requestAnimationFrame for smooth animation
-    function animatePath(path: SVGPathElement, duration: number, delay: number) {
-      const length = path.getTotalLength();
-      let startTime: number | null = null;
-      let pauseTimeout: NodeJS.Timeout | null = null;
-      let resetTimeout: NodeJS.Timeout | null = null;
-
-      function animate(now: number) {
-        if (!running) return;
-        if (startTime === null) startTime = now;
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        path.style.transition = 'none';
+    
+    // Initialize paths with starting state
+    ids.forEach(id => {
+      const path = document.getElementById(id) as SVGPathElement | null;
+      if (path) {
+        const length = path.getTotalLength();
         path.style.strokeDasharray = `${length}`;
-        path.style.strokeDashoffset = `${length - length * progress}`;
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          // Animation complete, keep line visible for 1000ms, then reset
-          pauseTimeout = setTimeout(() => {
-            if (!running) return;
-            path.style.transition = 'none';
-            path.style.strokeDashoffset = `${length}`;
-            // Restart after short delay
-            resetTimeout = setTimeout(() => {
-              if (running) {
-                startTime = null;
-                requestAnimationFrame(animate);
-              }
-            }, delay);
-          }, 1000);
-        }
-      }
-      // Start animation
-      startTime = null;
-      requestAnimationFrame(animate);
-      // Cleanup on unmount
-      timeouts.push({
-        close: () => {
-          if (pauseTimeout) clearTimeout(pauseTimeout);
-          if (resetTimeout) clearTimeout(resetTimeout);
-        }
-      } as unknown as NodeJS.Timeout);
-    }
-
-    // Animate all paths with a staggered start
-    ids.forEach((id, idx) => {
-      const el = document.getElementById(id) as unknown as SVGPathElement | null;
-      if (el) {
-        // Remove any inline dashoffset set by JSX
-        el.style.strokeDashoffset = '';
-        el.style.strokeDasharray = '';
-        // Stagger start by 200ms per path
-        const t = setTimeout(() => {
-          animatePath(el, 1600, 100);
-        }, idx * 200);
-        timeouts.push(t);
+        path.style.strokeDashoffset = `${length}`;
+        path.style.transition = 'stroke-dashoffset 1.6s ease-in-out';
       }
     });
 
+    // Create intersection observer to trigger animations only when visible
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !animatedPaths.current.size) {
+          // Only start animations when the section is visible
+          startAnimations(ids);
+        }
+      },
+      { threshold: 0.2 } // Start when 20% of the section is visible
+    );
+
+    if (sectionRef.current) {
+      observer.current.observe(sectionRef.current);
+    }
+
+    // Optimized animation that doesn't use requestAnimationFrame during scroll
+    function startAnimations(pathIds: string[]) {
+      pathIds.forEach((id, idx) => {
+        setTimeout(() => {
+          if (!animationRef.current.active) return;
+          
+          const path = document.getElementById(id) as SVGPathElement | null;
+          if (!path) return;
+          
+          // Use CSS transitions instead of JS animation
+          path.style.strokeDashoffset = '0';
+          animatedPaths.current.add(id);
+          
+          // Reset animation after delay
+          setTimeout(() => {
+            if (!animationRef.current.active) return;
+            
+            // Briefly pause at full visibility
+            path.style.transition = 'none';
+            
+            setTimeout(() => {
+              if (!animationRef.current.active) return;
+              
+              // Reset and prepare for next animation
+              const length = path.getTotalLength();
+              path.style.strokeDashoffset = `${length}`;
+              
+              setTimeout(() => {
+                if (!animationRef.current.active) return;
+                
+                // Restore transition for next animation
+                path.style.transition = 'stroke-dashoffset 1.6s ease-in-out';
+                path.style.strokeDashoffset = '0';
+              }, 50);
+            }, 1000);
+          }, 1600);
+        }, idx * 200);
+      });
+    }
+
+    // Cleanup
     return () => {
-      running = false;
-      timeouts.forEach(clearTimeout);
+      animationRef.current.active = false;
+      if (observer.current && sectionRef.current) {
+        observer.current.unobserve(sectionRef.current);
+        observer.current.disconnect();
+      }
+      animatedPaths.current.clear();
     };
   }, []);
 
   const [weightIdx, setWeightIdx] = React.useState(0);
 
   return (
-    <section id="how-it-works" className="section-padding bg-white">
+    <section id="how-it-works" className="section-padding bg-white" ref={sectionRef}>
       <div className="container mx-auto">
         {/* Header row with title and upload step */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
@@ -120,14 +135,12 @@ const HowItWorksSection = () => {
             <div className="relative bg-gray-200 h-64 flex items-center justify-center">
               {/* Overlay SVG for animation */}
               <svg width="490" height="485" viewBox="-5 -8 490 490" fill="none" xmlns="http://www.w3.org/2000/svg" style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 2}}>
-                {/* ...SVG content omitted for brevity, but include all paths and elements from 9862555 1.svg... */}
                 <g>
-                  {/* ...all SVG paths and elements from 9862555 1.svg... */}
-                  <path id="segmentA1" d="M82 56.5L400 56L466.5 186" stroke="#FF0000" strokeWidth="5" fill="none" strokeDasharray="1000" strokeDashoffset="1000" />
-                  <path id="segmentA2" d="M15 186.5L76.5 222.5" stroke="#FF0000" strokeWidth="5" fill="none" strokeDasharray="1000" strokeDashoffset="1000" />
-                  <path id="segmentA3" d="M104.5 180.5H377" stroke="#FF0000" strokeWidth="5" fill="none" strokeDasharray="1000" strokeDashoffset="1000" />
-                  <path id="segmentA4" d="M297.5 17.5V463" stroke="#FF0000" strokeWidth="5" fill="none" strokeDasharray="1000" strokeDashoffset="1000" />
-                  <path id="segmentA5" d="M185 15.5H296.5" stroke="#FF0000" strokeWidth="5" fill="none" strokeDasharray="1000" strokeDashoffset="1000" />
+                  <path id="segmentA1" d="M82 56.5L400 56L466.5 186" stroke="#FF0000" strokeWidth="5" fill="none" />
+                  <path id="segmentA2" d="M15 186.5L76.5 222.5" stroke="#FF0000" strokeWidth="5" fill="none" />
+                  <path id="segmentA3" d="M104.5 180.5H377" stroke="#FF0000" strokeWidth="5" fill="none" />
+                  <path id="segmentA4" d="M297.5 17.5V463" stroke="#FF0000" strokeWidth="5" fill="none" />
+                  <path id="segmentA5" d="M185 15.5H296.5" stroke="#FF0000" strokeWidth="5" fill="none" />
                 </g>
               </svg>
               <img
