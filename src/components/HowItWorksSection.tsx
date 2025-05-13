@@ -245,19 +245,19 @@ const HowItWorksSection = () => {
                 <path d="M398.663 215.152C398.528 214.967 398.393 214.78 398.259 214.593C398.129 214.413 398 214.232 397.871 214.052C397.915 214.021 397.963 213.995 398.015 213.973C406.473 210.649 414.749 206.852 422.792 202.612C423.032 202.988 423.272 203.363 423.512 203.74C415.445 207.997 407.147 211.811 398.663 215.152Z" fill="#636C83"/>
                 <path d="M399.335 55.6239L398.903 56.132C404.289 60.6973 407.609 67.3546 410.787 73.896C427.736 108.812 444.701 143.727 461.383 178.073L461.981 177.783H461.315V177.797L461.383 178.091C462.741 180.867 464.085 183.629 465.429 186.392L466.028 186.1L465.596 185.593C447.552 201.017 426.967 213.46 404.031 222.004L404.263 222.628L404.789 222.219C402.749 219.599 400.752 216.916 398.8 214.205C390.668 202.885 383.473 190.924 377.293 178.428L376.695 178.723H377.361V178.693H376.695L377.361 178.709C378.36 136.225 382.648 93.7706 399.941 55.9013L399.335 55.6239L398.728 55.348C381.315 93.4906 377.031 136.129 376.029 178.677L376.028 178.693V178.723L376.097 179.019C382.311 191.581 389.543 203.604 397.717 214.984C399.679 217.707 401.685 220.401 403.737 223.037C403.916 223.268 404.223 223.355 404.496 223.253C427.584 214.653 448.307 202.127 466.461 186.607C466.693 186.409 466.761 186.081 466.628 185.808C465.284 183.047 463.94 180.283 462.58 177.504L461.981 177.797H462.648V177.783L462.581 177.491C445.9 143.144 428.936 108.229 411.985 73.3133C408.8 66.7733 405.431 59.9306 399.765 55.116C399.607 54.98 399.393 54.928 399.189 54.9733C398.985 55.0186 398.815 55.1573 398.728 55.348L399.335 55.6239Z" fill="#1C283E"/>
                   <path id="segmentA1"   d="M82 56.5L400 56L466.5 186"
-                        class="measurement" stroke="#FF0000" stroke-width="5" fill="none"
+                        className="measurement" stroke="#FF0000" stroke-width="5" fill="none"
                         stroke-dasharray="1000" stroke-dashoffset="1000" />
                   <path id="segmentA2"   d="M15 186.5L76.5 222.5"
-                        class="measurement" stroke="#FF0000" stroke-width="5" fill="none"
+                        className="measurement" stroke="#FF0000" stroke-width="5" fill="none"
                         stroke-dasharray="1000" stroke-dashoffset="1000"/>
                   <path id="segmentA3"   d="M104.5 180.5H377"
-                        class="measurement" stroke="#FF0000" stroke-width="5" fill="none"
+                        className="measurement" stroke="#FF0000" stroke-width="5" fill="none"
                         stroke-dasharray="1000" stroke-dashoffset="1000"/>
                   <path id="segmentA4"   d="M297.5 17.5V463"
-                        class="measurement" stroke="#FF0000" stroke-width="5" fill="none"
+                        className="measurement" stroke="#FF0000" stroke-width="5" fill="none"
                         stroke-dasharray="1000" stroke-dashoffset="1000"/>
                   <path id="segmentA5"   d="M185 15.5H296.5"
-                        class="measurement" stroke="#FF0000" stroke-width="5" fill="none"
+                        className="measurement" stroke="#FF0000" stroke-width="5" fill="none"
                         stroke-dasharray="1000" stroke-dashoffset="1000"/>
 </svg>
               {/* Badge: absolute on desktop, static below SVG on mobile */}
