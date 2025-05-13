@@ -48,8 +48,7 @@ const HowItWorksSection = () => {
         setTimeout(() => {
           if (!animationRef.current.active) return;
           
-          const element = document.getElementById(id);
-          const path = element instanceof SVGPathElement ? element : null;
+          const path = document.getElementById(id) as unknown as SVGPathElement | null;
           if (!path) return;
           
           // Use CSS transitions instead of JS animation
@@ -355,21 +354,98 @@ function Slideshow({ onImageChange }: { onImageChange?: (idx: number) => void })
     "/ChatGPT Image May 11, 2025, 3-Photoroom.png",
     "/ChatGPT Image May 11, 2025, 4-Photoroom.png",
   ];
-  const [idx, setIdx] = React.useState(0);
-  useEffect(() => {
-    if (onImageChange) onImageChange(idx);
-  }, [idx, onImageChange]);
-  useEffect(() => {
-    const timer = setInterval(() => setIdx(i => (i + 1) % images.length), 2000);
-    return () => clearInterval(timer);
-  }, []);
+  const [currentIdx, setCurrentIdx] = React.useState(0);
+  const [isFading, setIsFading] = React.useState(false);
+  const [nextIdx, setNextIdx] = React.useState<number | null>(null);
+
+  React.useEffect(() => {
+    if (onImageChange) onImageChange(currentIdx);
+  }, [currentIdx, onImageChange]);
+
+  React.useEffect(() => {
+    let fadeTimeout: NodeJS.Timeout;
+    let holdTimeout: NodeJS.Timeout;
+
+    holdTimeout = setTimeout(() => {
+      setNextIdx((currentIdx + 1) % images.length);
+      setIsFading(true);
+      fadeTimeout = setTimeout(() => {
+        setCurrentIdx((currentIdx + 1) % images.length);
+        setIsFading(false);
+        setNextIdx(null);
+      }, 500); // fade duration
+    }, 2000); // hold duration
+
+    return () => {
+      clearTimeout(holdTimeout);
+      clearTimeout(fadeTimeout);
+    };
+  }, [currentIdx, images.length]);
+
+  // Always render both current and next image, but control their opacity and zIndex
+  const showNext = isFading && nextIdx !== null;
   return (
-    <img
-      src={images[idx]}
-      alt="Virtual try-on technology"
-      className="object-contain rounded"
-      style={{ height: '100%', width: 'auto', maxHeight: 245, maxWidth: 320, display: 'block' }}
-    />
+    <div
+      style={{
+        position: 'relative',
+        height: 245,
+        width: 320,
+        maxWidth: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {/* Current image */}
+      <img
+        src={images[currentIdx]}
+        alt="Virtual try-on technology"
+        className="object-contain rounded"
+        style={{
+          height: '100%',
+          width: 'auto',
+          maxHeight: 245,
+          maxWidth: 320,
+          display: 'block',
+          position: 'absolute',
+          left: typeof window !== "undefined" && window.innerWidth < 500 ? '100%' : '50%',
+          top: '50%',
+          transform: typeof window !== "undefined" && window.innerWidth < 500
+            ? 'translate(-100%, -50%)'
+            : 'translate(-50%, -50%)',
+          opacity: showNext ? 0 : 1,
+          transition: 'opacity 500ms ease',
+          zIndex: showNext ? 1 : 2,
+          pointerEvents: 'none',
+        }}
+        draggable={false}
+      />
+      {/* Next image (always rendered, but only visible during fade) */}
+      <img
+        src={images[showNext ? nextIdx! : currentIdx]}
+        alt=""
+        aria-hidden="true"
+        className="object-contain rounded"
+        style={{
+          height: '100%',
+          width: 'auto',
+          maxHeight: 245,
+          maxWidth: 320,
+          display: 'block',
+          position: 'absolute',
+          left: typeof window !== "undefined" && window.innerWidth < 500 ? '100%' : '50%',
+          top: '50%',
+          transform: typeof window !== "undefined" && window.innerWidth < 500
+            ? 'translate(-100%, -50%)'
+            : 'translate(-50%, -50%)',
+          opacity: showNext ? 1 : 0,
+          transition: 'opacity 500ms ease',
+          zIndex: 2,
+          pointerEvents: 'none',
+        }}
+        draggable={false}
+      />
+    </div>
   );
 }
 
