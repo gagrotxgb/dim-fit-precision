@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import { Upload, CheckCircle, Star, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -17,7 +18,7 @@ const HowItWorksSection = () => {
     
     // Initialize paths with starting state
     ids.forEach(id => {
-      const path = document.getElementById(id) as unknown as SVGPathElement | null;
+      const path = document.getElementById(id) as SVGPathElement | null;
       if (path) {
         const length = path.getTotalLength();
         path.style.strokeDasharray = `${length}`;
@@ -49,9 +50,9 @@ const HowItWorksSection = () => {
           if (!animationRef.current.active) return;
           
           const element = document.getElementById(id);
-          const path = element instanceof SVGPathElement ? element : null;
-          if (!path) return;
+          if (!element || !(element instanceof SVGPathElement)) return;
           
+          const path = element;
           // Use CSS transitions instead of JS animation
           path.style.strokeDashoffset = '0';
           animatedPaths.current.add(id);
@@ -94,7 +95,7 @@ const HowItWorksSection = () => {
     };
   }, []);
 
-  const [weightIdx, setWeightIdx] = React.useState(0);
+  const [weightIdx, setWeightIdx] = useState(0);
 
   return (
     <section id="how-it-works" className="section-padding bg-white" ref={sectionRef}>
@@ -355,21 +356,56 @@ function Slideshow({ onImageChange }: { onImageChange?: (idx: number) => void })
     "/ChatGPT Image May 11, 2025, 3-Photoroom.png",
     "/ChatGPT Image May 11, 2025, 4-Photoroom.png",
   ];
-  const [idx, setIdx] = React.useState(0);
+  
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [nextIdx, setNextIdx] = useState(1);
+  const [transitioning, setTransitioning] = useState(false);
+  
   useEffect(() => {
-    if (onImageChange) onImageChange(idx);
-  }, [idx, onImageChange]);
+    if (onImageChange) onImageChange(currentIdx);
+  }, [currentIdx, onImageChange]);
+  
   useEffect(() => {
-    const timer = setInterval(() => setIdx(i => (i + 1) % images.length), 2000);
+    const timer = setInterval(() => {
+      // Start transition
+      setTransitioning(true);
+      setNextIdx((currentIdx + 1) % images.length);
+      
+      // After transition completes, update current index
+      const transitionTimer = setTimeout(() => {
+        setCurrentIdx((currentIdx + 1) % images.length);
+        setTransitioning(false);
+      }, 1000); // Match this with the CSS transition duration
+      
+      return () => clearTimeout(transitionTimer);
+    }, 3000); // Total time between transitions
+    
     return () => clearInterval(timer);
-  }, []);
+  }, [currentIdx, images.length]);
+  
   return (
-    <img
-      src={images[idx]}
-      alt="Virtual try-on technology"
-      className="object-contain rounded"
-      style={{ height: '100%', width: 'auto', maxHeight: 245, maxWidth: 320, display: 'block' }}
-    />
+    <div className="relative h-full w-auto" style={{ height: '100%', width: 'auto', maxHeight: 245, maxWidth: 320 }}>
+      {/* Current image */}
+      <img
+        src={images[currentIdx]}
+        alt={`Virtual try-on technology ${currentIdx + 1}`}
+        className="object-contain rounded absolute top-0 left-0 w-full h-full"
+        style={{ 
+          opacity: transitioning ? 0 : 1,
+          transition: 'opacity 1s ease-in-out'
+        }}
+      />
+      {/* Next image (for crossfade) */}
+      <img
+        src={images[nextIdx]}
+        alt={`Virtual try-on technology ${nextIdx + 1}`}
+        className="object-contain rounded absolute top-0 left-0 w-full h-full"
+        style={{ 
+          opacity: transitioning ? 1 : 0,
+          transition: 'opacity 1s ease-in-out'
+        }}
+      />
+    </div>
   );
 }
 
