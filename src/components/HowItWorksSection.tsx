@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import { Upload, CheckCircle, Star, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -355,21 +356,82 @@ function Slideshow({ onImageChange }: { onImageChange?: (idx: number) => void })
     "/ChatGPT Image May 11, 2025, 3-Photoroom.png",
     "/ChatGPT Image May 11, 2025, 4-Photoroom.png",
   ];
-  const [idx, setIdx] = React.useState(0);
+  
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [nextIdx, setNextIdx] = useState(null);
+  const [transitioning, setTransitioning] = useState(false);
+  
+  // Handle image change callback
   useEffect(() => {
-    if (onImageChange) onImageChange(idx);
-  }, [idx, onImageChange]);
+    if (onImageChange) onImageChange(currentIdx);
+  }, [currentIdx, onImageChange]);
+  
+  // Manage slideshow transitions
   useEffect(() => {
-    const timer = setInterval(() => setIdx(i => (i + 1) % images.length), 2000);
-    return () => clearInterval(timer);
-  }, []);
+    const HOLD_TIME = 2000; // 2 seconds on each image
+    const TRANSITION_TIME = 500; // 0.5 seconds for transition
+    
+    // Function to advance to next image
+    const advanceSlide = () => {
+      const nextImageIdx = (currentIdx + 1) % images.length;
+      
+      // Start transition
+      setNextIdx(nextImageIdx);
+      setTransitioning(true);
+      
+      // After transition completes, update current to next
+      const transitionTimer = setTimeout(() => {
+        setCurrentIdx(nextImageIdx);
+        setTransitioning(false);
+        setNextIdx(null);
+      }, TRANSITION_TIME);
+      
+      return transitionTimer;
+    };
+    
+    // Set timer for advancing slides
+    const timer = setTimeout(advanceSlide, HOLD_TIME);
+    
+    // Cleanup
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [currentIdx, images.length]);
+  
   return (
-    <img
-      src={images[idx]}
-      alt="Virtual try-on technology"
-      className="object-contain rounded"
-      style={{ height: '100%', width: 'auto', maxHeight: 245, maxWidth: 320, display: 'block' }}
-    />
+    <div className="relative" style={{ height: '100%', width: 'auto', maxHeight: 245, maxWidth: 320 }}>
+      {/* Current image */}
+      <img
+        src={images[currentIdx]}
+        alt={`Virtual try-on ${currentIdx + 1}`}
+        className="object-contain rounded absolute inset-0"
+        style={{ 
+          height: '100%', 
+          width: 'auto', 
+          maxHeight: 245, 
+          maxWidth: 320,
+          opacity: transitioning ? 0 : 1,
+          transition: 'opacity 0.5s ease-in-out'
+        }}
+      />
+      
+      {/* Next image (shown during transition) */}
+      {nextIdx !== null && (
+        <img
+          src={images[nextIdx]}
+          alt={`Virtual try-on ${nextIdx + 1}`}
+          className="object-contain rounded absolute inset-0"
+          style={{ 
+            height: '100%', 
+            width: 'auto', 
+            maxHeight: 245, 
+            maxWidth: 320,
+            opacity: transitioning ? 1 : 0,
+            transition: 'opacity 0.5s ease-in-out'
+          }}
+        />
+      )}
+    </div>
   );
 }
 
