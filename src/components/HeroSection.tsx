@@ -44,7 +44,7 @@ const HeroSection = () => {
               {[
                 'SKU-level sizing information to your customers',
                 'Provide fit-accurate, size-accurate virtual try-on',
-                'Custom apparel size info to users',
+                'Custom apparel measurements info to users',
                 'Automatically provide all apparel measurements'
               ].map((point, i) => (
                 <li key={i} className="flex items-start">
@@ -59,7 +59,7 @@ const HeroSection = () => {
                 See Demo
               </a>
               <a 
-                href="https://wa.me/1234567890" 
+                href="https://wa.me/0918108142423" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn-secondary text-center"
