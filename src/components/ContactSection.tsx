@@ -127,8 +127,8 @@ const ContactSection = () => {
             
             <div className="mt-6">
               <h3 className="text-xl font-bold text-brand-blue mb-3">Contact Information</h3>
-              <p className="text-gray-700 mb-1">Email: info@appareldim.com</p>
-              <p className="text-gray-700">Address: 123 Tech Avenue, Innovation District, CA 94103</p>
+              <p className="text-gray-700 mb-1">Email: samgaurang@gmail.com</p>
+              <p className="text-gray-700">Made in India <span aria-label="love" role="img" className="text-red-500">♥</span></p>
               
               <div className="flex space-x-4 mt-6">
                 <a 
