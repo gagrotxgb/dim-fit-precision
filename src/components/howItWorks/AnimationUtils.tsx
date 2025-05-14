@@ -12,17 +12,9 @@ export const usePathAnimation = () => {
     // IDs of the animated paths
     const ids = ['segmentA1', 'segmentA2', 'segmentA3', 'segmentA4', 'segmentA5'];
     
-    // Initialize paths with starting state
-    ids.forEach(id => {
-      const path = document.getElementById(id) as unknown as SVGPathElement | null;
-      if (path) {
-        const length = path.getTotalLength();
-        path.style.strokeDasharray = `${length}`;
-        path.style.strokeDashoffset = `${length}`;
-        path.style.transition = 'stroke-dashoffset 1.6s ease-in-out';
-      }
-    });
-
+    // Initialize all path segments on mount
+    initializePaths();
+    
     // Create intersection observer to trigger animations only when visible
     observer.current = new IntersectionObserver(
       (entries) => {
@@ -39,42 +31,62 @@ export const usePathAnimation = () => {
       observer.current.observe(sectionRef.current);
     }
 
+    // Also initialize any paths that might be in the hero section
+    // This ensures the animation works in both sections
+    function initializePaths() {
+      ids.forEach(id => {
+        const paths = document.querySelectorAll(`#${id}`);
+        paths.forEach(path => {
+          const pathElement = path as unknown as SVGPathElement;
+          if (pathElement) {
+            const length = pathElement.getTotalLength();
+            pathElement.style.strokeDasharray = `${length}`;
+            pathElement.style.strokeDashoffset = `${length}`;
+            pathElement.style.transition = 'stroke-dashoffset 1.6s ease-in-out';
+          }
+        });
+      });
+    }
+
     // Optimized animation that doesn't use requestAnimationFrame during scroll
     function startAnimations(pathIds: string[]) {
       pathIds.forEach((id, idx) => {
         setTimeout(() => {
           if (!animationRef.current.active) return;
           
-          const path = document.getElementById(id) as unknown as SVGPathElement | null;
-          if (!path) return;
-          
-          // Use CSS transitions instead of JS animation
-          path.style.strokeDashoffset = '0';
-          animatedPaths.current.add(id);
-          
-          // Reset animation after delay
-          setTimeout(() => {
-            if (!animationRef.current.active) return;
+          const paths = document.querySelectorAll(`#${id}`);
+          paths.forEach(pathElement => {
+            const path = pathElement as unknown as SVGPathElement;
+            if (!path) return;
             
-            // Briefly pause at full visibility
-            path.style.transition = 'none';
+            // Use CSS transitions instead of JS animation
+            path.style.strokeDashoffset = '0';
+            animatedPaths.current.add(id);
             
+            // Reset animation after delay
             setTimeout(() => {
               if (!animationRef.current.active) return;
               
-              // Reset and prepare for next animation
-              const length = path.getTotalLength();
-              path.style.strokeDashoffset = `${length}`;
+              // Briefly pause at full visibility
+              path.style.transition = 'none';
               
               setTimeout(() => {
                 if (!animationRef.current.active) return;
                 
-                // Restore transition for next animation
-                path.style.transition = 'stroke-dashoffset 1.6s ease-in-out';
-                path.style.strokeDashoffset = '0';
-              }, 50);
-            }, 1000);
-          }, 1600);
+                // Reset and prepare for next animation
+                const length = path.getTotalLength();
+                path.style.strokeDashoffset = `${length}`;
+                
+                setTimeout(() => {
+                  if (!animationRef.current.active) return;
+                  
+                  // Restore transition for next animation
+                  path.style.transition = 'stroke-dashoffset 1.6s ease-in-out';
+                  path.style.strokeDashoffset = '0';
+                }, 50);
+              }, 1000);
+            }, 1600);
+          });
         }, idx * 200);
       });
     }
@@ -91,4 +103,23 @@ export const usePathAnimation = () => {
   }, []);
 
   return { sectionRef };
+};
+
+// Export a function to initialize path animations for any section
+export const initializePathAnimations = (elementId: string) => {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+  
+  const paths = element.querySelectorAll('path');
+  paths.forEach(path => {
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = `${length}`;
+    path.style.strokeDashoffset = `${length}`;
+    path.style.transition = 'stroke-dashoffset 1.6s ease-in-out';
+    
+    // Animate in
+    setTimeout(() => {
+      path.style.strokeDashoffset = '0';
+    }, 300);
+  });
 };
