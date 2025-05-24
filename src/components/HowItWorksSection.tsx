@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { usePathAnimation } from './howItWorks/AnimationUtils';
 import BenefitA from './howItWorks/BenefitA';
@@ -9,7 +8,7 @@ const HowItWorksSection: React.FC = () => {
   const { sectionRef } = usePathAnimation();
 
   return (
-    <section id="how-it-works" className="section-padding bg-white" ref={sectionRef}>
+    <section id="how-it-works" className="pt-16 md:pt-16 pb-20 md:pb-16 bg-white" ref={sectionRef}>
       <div className="container mx-auto">
         {/* Header row with title and upload step */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">

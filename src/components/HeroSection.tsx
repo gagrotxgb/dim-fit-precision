@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import HeroSlideshow from './HeroSlideshow';
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="pt-24 pb-12 md:pt-40 md:pb-24 px-4 md:px-8 bg-gradient-to-br from-brand-gray to-white">
+    <section id="hero" className="pt-24 pb-4 md:pt-40 md:pb-24 px-4 md:px-8 bg-gradient-to-br from-brand-gray to-white">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center">
           <div className="space-y-6">
@@ -47,14 +46,14 @@ const HeroSection = () => {
             </div>
           </div>
           
-          {/* Hero Slideshow */}
-          <div className="relative h-full flex items-center justify-center animate-fade-in mt-4 md:mt-0">
+        </div>
+      </div>
+      {/* Hero Slideshow */}
+      <div className="relative h-full flex items-center justify-center animate-fade-in pt-20 md:pt-0 md:mt-0">
             <div className="w-full max-w-2xl mx-auto">
               <HeroSlideshow />
             </div>
           </div>
-        </div>
-      </div>
     </section>
   );
 };

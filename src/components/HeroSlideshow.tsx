@@ -19,7 +19,7 @@ const HeroSlideshow: React.FC = () => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-[400px] md:h-[625px] flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-[350px] md:h-[625px] flex items-center justify-center overflow-hidden">
       {images.map((image, index) => (
         <img
           key={index}
