@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
-import Slideshow from './howItWorks/Slideshow';
+import HeroSlideshow from './HeroSlideshow';
 
 const HeroSection = () => {
   return (
@@ -47,10 +47,10 @@ const HeroSection = () => {
             </div>
           </div>
           
-          {/* Large Slideshow without cards */}
+          {/* New Hero Slideshow */}
           <div className="relative h-full flex items-center justify-center animate-fade-in">
-            <div className="w-full max-w-lg mx-auto">
-              <Slideshow />
+            <div className="w-full max-w-2xl mx-auto">
+              <HeroSlideshow />
             </div>
           </div>
         </div>
