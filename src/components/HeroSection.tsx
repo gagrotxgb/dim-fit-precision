@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 import HeroSlideshow from './HeroSlideshow';
@@ -37,7 +36,7 @@ const HeroSection = () => {
                 See Demo
               </a>
               <a 
-                href="https://wa.me/0918108142423" 
+                href="https://wa.me/0918108142423?text=Hi%2C%20I%27m%20interested%20in%20the%20ApparelDIM%27s%20demo." 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="btn-secondary text-center"

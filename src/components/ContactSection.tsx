@@ -124,7 +124,7 @@ const ContactSection = () => {
                   {isSubmitting ? 'Sending...' : 'Submit'}
                 </button>
                 <a
-                  href="https://wa.me/0918108142423"
+                  href="https://wa.me/0918108142423?text=Hi%2C%20I%27m%20interested%20in%20the%20ApparelDIM%27s%20demo." 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-1/2 btn-secondary text-center mt-3 sm:mt-0"
