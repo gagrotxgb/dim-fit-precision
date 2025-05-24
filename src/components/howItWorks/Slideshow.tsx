@@ -7,10 +7,9 @@ interface SlideshowProps {
 
 const Slideshow: React.FC<SlideshowProps> = ({ onImageChange }) => {
   const images = [
-    "/ChatGPT Image May 11, 2025, 1-Photoroom.png",
-    "/ChatGPT Image May 11, 2025, 2-Photoroom.png",
-    "/ChatGPT Image May 11, 2025, 3-Photoroom.png",
-    "/ChatGPT Image May 11, 2025, 4-Photoroom.png",
+    "/lovable-uploads/0b47f217-ba54-4748-8060-cc7094019a9f.png",
+    "/lovable-uploads/64c4e255-1c82-4748-8728-d257466a7c99.png",
+    "/lovable-uploads/33049b9e-3b15-4782-88f8-79b7222631a3.png",
   ];
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isFading, setIsFading] = useState(false);
@@ -57,7 +56,7 @@ const Slideshow: React.FC<SlideshowProps> = ({ onImageChange }) => {
       {/* Current image */}
       <img
         src={images[currentIdx]}
-        alt="Virtual try-on technology"
+        alt="Product measurement visualization"
         className="object-contain rounded"
         style={{
           height: '100%',
