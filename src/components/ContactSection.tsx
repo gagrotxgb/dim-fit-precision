@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { Instagram, Linkedin } from 'lucide-react';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
+
+const SERVICE_ID = 'service_jhwklrj';
+const TEMPLATE_ID = 'template_ka8gmt7';
+const PUBLIC_KEY = 'fl3dYQudTEdKZRa5S';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -20,18 +25,21 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      toast.success('Message sent successfully! We\'ll get back to you soon.');
-      setFormData({
-        name: '',
-        number: '',
-        email: '',
-        company: ''
-      });
-      setIsSubmitting(false);
-    }, 1000);
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, formData, PUBLIC_KEY)
+      .then(() => {
+        toast.success('Message sent successfully! We\'ll get back to you soon.');
+        setFormData({
+          name: '',
+          number: '',
+          email: '',
+          company: ''
+        });
+      })
+      .catch(() => {
+        toast.error('Failed to send message. Please try again.');
+      })
+      .finally(() => setIsSubmitting(false));
   };
 
   return (
@@ -44,7 +52,7 @@ const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-4" aria-label="Contact form">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                  Name
+                  Name*
                 </label>
                 <input
                   id="name"
@@ -60,7 +68,7 @@ const ContactSection = () => {
               
               <div>
                 <label htmlFor="number" className="block text-sm font-medium text-gray-700 mb-1">
-                  Number
+                  Number*
                 </label>
                 <input
                   id="number"
@@ -76,7 +84,7 @@ const ContactSection = () => {
               
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
+                  Email*
                 </label>
                 <input
                   id="email"
@@ -102,7 +110,7 @@ const ContactSection = () => {
                   value={formData.company}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-teal"
-                  aria-required="true"
+                  aria-required="false"
                 />
               </div>
               
