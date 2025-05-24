@@ -20,13 +20,23 @@ const HeroSection = () => {
             <ul className="space-y-3 text-gray-700">
               {[
                 'SKU-level sizing information to your customers',
-                'Provide fit-accurate, size-accurate virtual try-on',
+                {
+                  label: 'Provide fit-accurate, size-accurate virtual try-on',
+                  tag: true
+                },
                 'Custom apparel measurements info to users',
                 'Automatically provide all apparel measurements'
               ].map((point, i) => (
                 <li key={i} className="flex items-start">
                   <span className="font-bold text-brand-teal mr-2">{i + 1}.</span>
-                  <span>{point}</span>
+                  <span>
+                    {typeof point === 'string' ? point : point.label}
+                    {typeof point === 'object' && point.tag && (
+                      <Badge variant="outline" className="ml-2 bg-brand-teal/10 text-brand-teal border-brand-teal/30 py-1 px-2">
+                        World's First
+                      </Badge>
+                    )}
+                  </span>
                 </li>
               ))}
             </ul>
