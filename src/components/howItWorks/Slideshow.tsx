@@ -39,37 +39,17 @@ const Slideshow: React.FC<SlideshowProps> = ({ onImageChange }) => {
     };
   }, [currentIdx, images.length]);
 
-  // Always render both current and next image, but control their opacity and zIndex
   const showNext = isFading && nextIdx !== null;
+  
   return (
-    <div
-      style={{
-        position: 'relative',
-        height: 245,
-        width: 320,
-        maxWidth: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <div className="relative w-full h-80 md:h-96 flex items-center justify-center">
       {/* Current image */}
       <img
         src={images[currentIdx]}
         alt="Product measurement visualization"
-        className="object-contain rounded"
+        className="object-contain w-full h-full max-w-full max-h-full"
         style={{
-          height: '100%',
-          width: 'auto',
-          maxHeight: 245,
-          maxWidth: 320,
-          display: 'block',
           position: 'absolute',
-          left: typeof window !== "undefined" && window.innerWidth < 500 ? '100%' : '50%',
-          top: '50%',
-          transform: typeof window !== "undefined" && window.innerWidth < 500
-            ? 'translate(-100%, -50%)'
-            : 'translate(-50%, -50%)',
           opacity: showNext ? 0 : 1,
           transition: 'opacity 500ms ease',
           zIndex: showNext ? 1 : 2,
@@ -77,24 +57,14 @@ const Slideshow: React.FC<SlideshowProps> = ({ onImageChange }) => {
         }}
         draggable={false}
       />
-      {/* Next image (always rendered, but only visible during fade) */}
+      {/* Next image */}
       <img
         src={images[showNext ? nextIdx! : currentIdx]}
         alt=""
         aria-hidden="true"
-        className="object-contain rounded"
+        className="object-contain w-full h-full max-w-full max-h-full"
         style={{
-          height: '100%',
-          width: 'auto',
-          maxHeight: 245,
-          maxWidth: 320,
-          display: 'block',
           position: 'absolute',
-          left: typeof window !== "undefined" && window.innerWidth < 500 ? '100%' : '50%',
-          top: '50%',
-          transform: typeof window !== "undefined" && window.innerWidth < 500
-            ? 'translate(-100%, -50%)'
-            : 'translate(-50%, -50%)',
           opacity: showNext ? 1 : 0,
           transition: 'opacity 500ms ease',
           zIndex: 2,
