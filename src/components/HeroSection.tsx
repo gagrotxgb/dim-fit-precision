@@ -45,15 +45,14 @@ const HeroSection = () => {
               </a>
             </div>
           </div>
-          
-        </div>
-      </div>
-      {/* Hero Slideshow */}
-      <div className="relative h-full flex items-center justify-center animate-fade-in pt-20 md:pt-0 md:mt-0">
+          {/* Hero Slideshow */}
+      <div className="relative h-full flex items-center justify-center animate-fade-in pt-16 md:pt-0 md:mt-0">
             <div className="w-full max-w-2xl mx-auto">
               <HeroSlideshow />
             </div>
           </div>
+        </div>
+      </div>
     </section>
   );
 };
