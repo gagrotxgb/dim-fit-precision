@@ -114,23 +114,32 @@ const ContactSection = () => {
                 />
               </div>
               
-              <div>
+              <div className="flex flex-col sm:flex-row sm:space-x-4">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-primary disabled:opacity-70"
+                  className="w-full sm:w-1/2 btn-primary disabled:opacity-70 mb-3 sm:mb-0"
                   aria-label="Submit form"
                 >
                   {isSubmitting ? 'Sending...' : 'Submit'}
                 </button>
+                <a
+                  href="https://wa.me/0918108142423"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-1/2 btn-secondary text-center mt-3 sm:mt-0"
+                  aria-label="WhatsApp Us"
+                >
+                  WhatsApp Us
+                </a>
               </div>
             </form>
           </div>
           
           {/* Map and Contact Info */}
           <div className="flex flex-col justify-between">
-            <div className="bg-brand-gray rounded-lg h-64 md:h-60 w-full hidden md:flex items-center justify-center">
-              <p className="text-brand-blue text-lg">Contact information</p>
+            <div className="rounded-lg h-64 md:h-60 w-full hidden md:flex items-center justify-center">
+              {/* <p className="text-brand-blue text-lg">Contact information</p> */}
             </div>
             
             <div className="mt-6">
